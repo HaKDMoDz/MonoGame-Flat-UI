@@ -1,4 +1,4 @@
 MonoGame-Flat-UI
 ================
 
-Flat User Interface for MonoGame projects
+MonoGame FlatUI is based on the FlatUI bootstrap web template : http://designmodo.github.io/Flat-UI/
