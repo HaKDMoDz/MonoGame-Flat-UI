@@ -45,10 +45,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controls\Button.cs" />
+    <Compile Include="Controls\Container.cs" />
     <Compile Include="Controls\Control.cs" />
+    <Compile Include="Controls\Label.cs" />
     <Compile Include="Engine.cs" />
     <Compile Include="Extension\Mouse.cs" />
     <Compile Include="Global\EventType.cs" />
+    <Compile Include="Global\Exceptions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utils\ColorType.cs" />
     <Compile Include="Utils\Fonts.cs" />

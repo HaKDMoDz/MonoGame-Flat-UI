@@ -14,10 +14,10 @@ namespace MonoGame.FlatUI
         public Boolean Enabled { get; set; }
         public Boolean Visible { get; set; }
         public Boolean Focus { get; set; }
-        public Int32 X { get; private set; }
-        public Int32 Y { get; private set; }
-        public Int32 Width { get; private set; }
-        public Int32 Height { get; private set; }
+        public Int32 X { get; protected set; }
+        public Int32 Y { get; protected set; }
+        public Int32 Width { get; protected set; }
+        public Int32 Height { get; protected set; }
         public String Text { get; set; }
 
         public event MonoGameEventHandler OnEnter;
@@ -28,13 +28,25 @@ namespace MonoGame.FlatUI
 
         protected ControlState State { get; set; }
 
-        protected FlatUIEngine EnginePointer { get; private set; }
+        internal FlatUIEngine EnginePointer { get; set; }
+
+        internal Control ParentControl { get; set; }
 
         public Rectangle Rectangle
         {
             get
             {
-                return new Rectangle(this.X, this.Y, this.Width, this.Height);
+                if (this.ParentControl == null)
+                {
+                    return new Rectangle(this.X, this.Y, this.Width, this.Height);
+                }
+                else
+                {
+                    return new Rectangle(this.X + this.ParentControl.X,
+                        this.Y + this.ParentControl.Y,
+                        this.Width,
+                        this.Height);
+                }
             }
         }
 
@@ -42,7 +54,14 @@ namespace MonoGame.FlatUI
         {
             get
             {
-                return new Vector2(this.X, this.Y);
+                if (this.ParentControl == null)
+                {
+                    return new Vector2(this.X, this.Y);
+                }
+                else
+                {
+                    return new Vector2(this.X + this.ParentControl.X, this.Y + this.ParentControl.Y);
+                }
             }
         }
 
@@ -57,7 +76,6 @@ namespace MonoGame.FlatUI
             this.Visible = true;
             this.Focus = false;
             this.EnginePointer = engine;
-            this.EnginePointer.AddControl(this);
         }
 
         #endregion

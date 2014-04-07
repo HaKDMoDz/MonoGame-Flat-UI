@@ -20,6 +20,8 @@ namespace MonoGame_FlatUI
         Button Button2;
         Button Button3;
 
+        Container Container1;
+
         public MainGame()
             : base()
         {
@@ -38,6 +40,15 @@ namespace MonoGame_FlatUI
             this.Button2 = new Button(this.Engine, 10, 70, 250, 50, "Button2", ColorType.PeterRiver);
 
             this.Button3 = new Button(this.Engine, 10, 140, 250, 50, "Yeah Flat Button", ColorType.Alizarin);
+
+            this.Container1 = new Container(this.Engine);
+            this.Container1.SetPosition(350, 50);
+            this.Container1.SetSize(300, 75);
+            this.Container1.AddControl(this.Button1);
+
+            this.Engine.AddControl(this.Container1);
+            this.Engine.AddControl(this.Button2);
+            this.Engine.AddControl(this.Button3);
             
             base.Initialize();
         }
@@ -66,7 +77,7 @@ namespace MonoGame_FlatUI
 
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.White);
+            GraphicsDevice.Clear(ColorType.Turquoise);
 
             this.Engine.Draw();
 

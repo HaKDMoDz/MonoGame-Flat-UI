@@ -138,12 +138,7 @@ namespace MonoGame.FlatUI
         /// <param name="spriteBatch">Engine sprite batch</param>
         public override void Draw(SpriteBatch spriteBatch)
         {
-            Rectangle[] _rectangles = new Rectangle[5];
-            _rectangles[0] = new Rectangle(0, 0, 5, 5);
-            _rectangles[1] = new Rectangle(5, 0, 1, 1);
-            _rectangles[2] = new Rectangle(this.EnginePointer.Masks[0].Width - 5, 0, 5, 5);
-            _rectangles[3] = new Rectangle(0, this.EnginePointer.Masks[0].Height - 5, 5, 5);
-            _rectangles[4] = new Rectangle(this.EnginePointer.Masks[0].Width - 5, this.EnginePointer.Masks[0].Height - 5, 5, 5);
+            Rectangle[] _rectangles = TextureHelper.GetRectanglesFromRoundRectMask(this.EnginePointer.Masks[0]);
 
             Texture2D _button = null;
             Color _color = this.NormalColor;
@@ -156,16 +151,15 @@ namespace MonoGame.FlatUI
                 _color = this.PressColor;
             }
             _button = TextureHelper.FillMaskColor(this.EnginePointer.GraphicsDevice, this.EnginePointer.Masks[0], _color);
-
             spriteBatch.Draw(_button, this.Position, _rectangles[0], Color.White);
-            spriteBatch.Draw(_button, new Rectangle(this.X + 5, this.Y, this.Width - 10, 5), _rectangles[1], Color.White);
-            spriteBatch.Draw(_button, new Vector2(this.X + this.Width - 5, this.Y), _rectangles[2], Color.White);
-            spriteBatch.Draw(_button, new Rectangle(this.X, this.Y + 5, this.Width, this.Height - 10), _rectangles[1], Color.White);
-            spriteBatch.Draw(_button, new Vector2(this.X, this.Y + this.Height - 5), _rectangles[3], Color.White);
-            spriteBatch.Draw(_button, new Rectangle(this.X + 5, this.Y + this.Height - 5, this.Width - 10, 5), _rectangles[1], Color.White);
-            spriteBatch.Draw(_button, new Vector2(this.X + this.Width - 5, this.Y + this.Height - 5), _rectangles[4], Color.White);
+            spriteBatch.Draw(_button, new Rectangle((Int32)this.Position.X + 5, (Int32)this.Position.Y, this.Rectangle.Width - 10, 5), _rectangles[1], Color.White);
+            spriteBatch.Draw(_button, new Vector2((Int32)this.Position.X + this.Rectangle.Width - 5, (Int32)this.Position.Y), _rectangles[2], Color.White);
+            spriteBatch.Draw(_button, new Rectangle((Int32)this.Position.X, (Int32)this.Position.Y + 5, this.Rectangle.Width, this.Rectangle.Height - 10), _rectangles[1], Color.White);
+            spriteBatch.Draw(_button, new Vector2((Int32)this.Position.X, (Int32)this.Position.Y + this.Rectangle.Height - 5), _rectangles[3], Color.White);
+            spriteBatch.Draw(_button, new Rectangle((Int32)this.Position.X + 5, (Int32)this.Position.Y + this.Rectangle.Height - 5, this.Rectangle.Width - 10, 5), _rectangles[1], Color.White);
+            spriteBatch.Draw(_button, new Vector2((Int32)this.Position.X + this.Rectangle.Width - 5, (Int32)this.Position.Y + this.Rectangle.Height - 5), _rectangles[4], Color.White);
 
-            Fonts.DrawCenteredText(spriteBatch, this.EnginePointer.Font, new Rectangle(this.X, this.Y, this.Width, this.Height), this.Text, Color.White);
+            Fonts.DrawCenteredText(spriteBatch, this.EnginePointer.Font, this.Rectangle, this.Text, Color.White);
         }
 
         #endregion

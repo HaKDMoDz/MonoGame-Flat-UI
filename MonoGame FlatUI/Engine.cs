@@ -102,6 +102,10 @@ namespace MonoGame.FlatUI
         /// <param name="control">Control to add</param>
         public void AddControl(Control control)
         {
+            if (control == null)
+            {
+                throw new NullReferenceException("Cannot add a null object");
+            }
             if (this.Controls.Contains(control) == false)
             {
                 this.Controls.Add(control);
@@ -114,6 +118,10 @@ namespace MonoGame.FlatUI
         /// <param name="control">Control to remove</param>
         public void RemoveControl(Control control)
         {
+            if (control == null)
+            {
+                throw new NullReferenceException("Cannot delete a null object");
+            }
             if (this.Controls.Contains(control) == true)
             {
                 this.Controls.Remove(control);

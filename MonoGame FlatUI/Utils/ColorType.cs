@@ -14,7 +14,7 @@ using System.Text;
 
 namespace MonoGame.FlatUI
 {
-    public class ColorType
+    public static class ColorType
     {
         private static Color GetColorFromHex(String hex)
         {
@@ -181,6 +181,14 @@ namespace MonoGame.FlatUI
             get
             {
                 return GetColorFromHex("7F8C8D");
+            }
+        }
+
+        public static Color GrayPanel
+        {
+            get
+            {
+                return GetColorFromHex("eff0f2");
             }
         }
     }

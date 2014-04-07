@@ -35,5 +35,16 @@ namespace MonoGame.FlatUI
             _texture.SetData(_buttonData);
             return _texture;
         }
+
+        public static Rectangle[] GetRectanglesFromRoundRectMask(Texture2D mask)
+        {
+            Rectangle[] _rectangles = new Rectangle[5];
+            _rectangles[0] = new Rectangle(0, 0, 5, 5);
+            _rectangles[1] = new Rectangle(5, 0, 1, 1);
+            _rectangles[2] = new Rectangle(mask.Width - 5, 0, 5, 5);
+            _rectangles[3] = new Rectangle(0, mask.Height - 5, 5, 5);
+            _rectangles[4] = new Rectangle(mask.Width - 5, mask.Height - 5, 5, 5);
+            return _rectangles;
+        }
     }
 }
