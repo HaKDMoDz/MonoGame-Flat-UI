@@ -20,6 +20,8 @@ namespace MonoGame_FlatUI
         Button Button2;
         Button Button3;
 
+        Label Label1;
+
         Container Container1;
 
         public MainGame()
@@ -34,17 +36,18 @@ namespace MonoGame_FlatUI
         {
             this.Engine = new FlatUIEngine(this.Content, this.GraphicsDevice);
 
-            this.Button1 = new Button(this.Engine, 10, 10, 250, 50, "Button1");
+            this.Button1 = new Button(this.Engine, 10, 80, 290, 50, "Click me!");
             this.Button1.OnClick += Button1_OnClick;
+            this.Button2 = new Button(this.Engine, 10, 10, 250, 50, "Not in container", ColorType.PeterRiver);
+            this.Button3 = new Button(this.Engine, 10, 70, 250, 50, "Yeah Flat Button", ColorType.Alizarin);
 
-            this.Button2 = new Button(this.Engine, 10, 70, 250, 50, "Button2", ColorType.PeterRiver);
-
-            this.Button3 = new Button(this.Engine, 10, 140, 250, 50, "Yeah Flat Button", ColorType.Alizarin);
+            this.Label1 = new Label(this.Engine, 25, 10, "Welcome to MonoGame FlatUI");
 
             this.Container1 = new Container(this.Engine);
             this.Container1.SetPosition(350, 50);
-            this.Container1.SetSize(300, 75);
+            this.Container1.SetSize(310, 150);
             this.Container1.AddControl(this.Button1);
+            this.Container1.AddControl(this.Label1);
 
             this.Engine.AddControl(this.Container1);
             this.Engine.AddControl(this.Button2);

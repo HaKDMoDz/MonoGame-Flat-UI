@@ -15,6 +15,9 @@ using System.Text;
 
 namespace MonoGame.FlatUI
 {
+    /// <summary>
+    /// MonoGame FlatUI Container class
+    /// </summary>
     public class Container : Control
     {
         #region FIELDS
@@ -26,6 +29,10 @@ namespace MonoGame.FlatUI
 
         #region CONSTRUCTORS
 
+        /// <summary>
+        /// Initialize a basic container (x: 0, y: 0, width: 100, height: 50)
+        /// </summary>
+        /// <param name="engine">Engine Pointer</param>
         public Container(FlatUIEngine engine)
             : base(engine)
         {
@@ -35,6 +42,14 @@ namespace MonoGame.FlatUI
             this.SetSize(100, 50);
         }
 
+        /// <summary>
+        /// Initialize a container with his size and position
+        /// </summary>
+        /// <param name="engine">Engine Pointer</param>
+        /// <param name="x">X Position</param>
+        /// <param name="y">Y Position</param>
+        /// <param name="width">Container width</param>
+        /// <param name="height">Container height</param>
         public Container(FlatUIEngine engine, Int32 x, Int32 y, Int32 width, Int32 height)
             : base(engine)
         {
@@ -44,6 +59,15 @@ namespace MonoGame.FlatUI
             this.SetSize(width, height);
         }
 
+        /// <summary>
+        /// Initialize a container with his size, position and color
+        /// </summary>
+        /// <param name="engine">Engine Pointer</param>
+        /// <param name="x">X Position</param>
+        /// <param name="y">Y Position</param>
+        /// <param name="width">Container width</param>
+        /// <param name="height">Container height</param>
+        /// <param name="color">Container color</param>
         public Container(FlatUIEngine engine, Int32 x, Int32 y, Int32 width, Int32 height, Color color)
             : base(engine)
         {
@@ -79,6 +103,7 @@ namespace MonoGame.FlatUI
             {
                 _control.Draw(spriteBatch);
             }
+            base.Draw(spriteBatch);
         }
 
         /// <summary>
@@ -90,6 +115,7 @@ namespace MonoGame.FlatUI
             {
                 _control.Update();
             }
+            base.Update();
         }
 
         /// <summary>
@@ -100,7 +126,7 @@ namespace MonoGame.FlatUI
         {
             if (control == null)
             {
-                throw new NullReferenceException("Cannot add a null object");
+                throw new NullReferenceException("Cannot add a null control");
             }
             control.ParentControl = this;
             control.EnginePointer = this.EnginePointer;
@@ -118,13 +144,14 @@ namespace MonoGame.FlatUI
         {
             if (control == null)
             {
-                throw new NullReferenceException("Cannot delete a null object");
+                throw new NullReferenceException("Cannot delete a null control");
             }
             if (this.Controls.Contains(control) == true)
             {
                 this.Controls.Remove(control);
             }
         }
+
         #endregion
     }
 }

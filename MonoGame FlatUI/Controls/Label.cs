@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework.Graphics;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,9 +15,14 @@ using System.Text;
 
 namespace MonoGame.FlatUI
 {
+    /// <summary>
+    /// MonoGame FlatUI Label class
+    /// </summary>
     public class Label : Control
     {
         #region FIELDS
+
+        public Color Color { get; set; }
 
         #endregion
 
@@ -31,6 +37,7 @@ namespace MonoGame.FlatUI
         {
             this.Text = "";
             this.SetPosition(0, 0);
+            this.Color = Color.Black;
         }
 
         /// <summary>
@@ -44,6 +51,7 @@ namespace MonoGame.FlatUI
         {
             this.Text = "";
             this.SetPosition(x, y);
+            this.Color = Color.Black;
         }
 
         /// <summary>
@@ -58,6 +66,7 @@ namespace MonoGame.FlatUI
         {
             this.Text = text;
             this.SetPosition(x, y);
+            this.Color = Color.Black;
         }
 
         #endregion
@@ -70,7 +79,8 @@ namespace MonoGame.FlatUI
         /// <param name="spriteBatch"></param>
         public override void Draw(SpriteBatch spriteBatch)
         {
-            throw new NotImplementedException();
+            spriteBatch.DrawString(this.EnginePointer.Font, this.Text, this.Position, this.Color);
+            base.Draw(spriteBatch);
         }
 
         /// <summary>
@@ -78,7 +88,7 @@ namespace MonoGame.FlatUI
         /// </summary>
         public override void Update()
         {
-            throw new NotImplementedException();
+            base.Update();
         }
 
         #endregion

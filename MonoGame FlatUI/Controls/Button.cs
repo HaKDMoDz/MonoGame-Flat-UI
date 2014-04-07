@@ -16,6 +16,9 @@ using System.Text;
 
 namespace MonoGame.FlatUI
 {
+    /// <summary>
+    /// MonoGame FlatUI Button class
+    /// </summary>
     public class Button : Control
     {
         #region FIELDS
@@ -113,23 +116,7 @@ namespace MonoGame.FlatUI
         /// </summary>
         public override void Update()
         {
-            MouseState _state = Mouse.GetState();
-            if (_state.IsInRectangle(this.Rectangle) == true)
-            {
-                this.MouseHover();
-                if (_state.IsMouseDown(_state.LeftButton) == true)
-                {
-                    this.MousePress();
-                }
-                if (_state.MouseClick(MouseButton.LeftButton) == true)
-                {
-                    this.MouseClick();
-                }
-            }
-            else
-            {
-                this.MouseLeave();
-            }
+            base.Update();
         }
 
         /// <summary>
@@ -139,9 +126,9 @@ namespace MonoGame.FlatUI
         public override void Draw(SpriteBatch spriteBatch)
         {
             Rectangle[] _rectangles = TextureHelper.GetRectanglesFromRoundRectMask(this.EnginePointer.Masks[0]);
-
             Texture2D _button = null;
             Color _color = this.NormalColor;
+            
             if (this.State == ControlState.Hover)
             {
                 _color = this.HoverColor;

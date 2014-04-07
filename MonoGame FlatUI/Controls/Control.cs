@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,6 +8,9 @@ using System.Text;
 
 namespace MonoGame.FlatUI
 {
+    /// <summary>
+    /// MonoGame FlatUI Control class
+    /// </summary>
     public abstract class Control
     {
         #region FIELDS
@@ -25,12 +29,6 @@ namespace MonoGame.FlatUI
         public event MonoGameEventHandler OnHover;
         public event MonoGameEventHandler OnClick;
         public event MonoGameEventHandler OnPress;
-
-        protected ControlState State { get; set; }
-
-        internal FlatUIEngine EnginePointer { get; set; }
-
-        internal Control ParentControl { get; set; }
 
         public Rectangle Rectangle
         {
@@ -65,10 +63,20 @@ namespace MonoGame.FlatUI
             }
         }
 
+        protected ControlState State { get; set; }
+
+        internal FlatUIEngine EnginePointer { get; set; }
+
+        internal Control ParentControl { get; set; }
+
         #endregion
 
         #region CONSTRUCTORS
 
+        /// <summary>
+        /// Initialize a control
+        /// </summary>
+        /// <param name="engine">Engine Pointer</param>
         public Control(FlatUIEngine engine) 
         {
             this.State = ControlState.Normal;
@@ -104,8 +112,30 @@ namespace MonoGame.FlatUI
             this.Height = height;
         }
 
-        public abstract void Update();
-        public abstract void Draw(SpriteBatch spriteBatch);
+        public virtual void Update()
+        {
+            MouseState _state = Mouse.GetState();
+            if (_state.IsInRectangle(this.Rectangle) == true)
+            {
+                this.MouseHover();
+                if (_state.IsMouseDown(_state.LeftButton) == true)
+                {
+                    this.MousePress();
+                }
+                if (_state.MouseClick(MouseButton.LeftButton) == true)
+                {
+                    this.MouseClick();
+                }
+            }
+            else
+            {
+                this.MouseLeave();
+            }
+        }
+
+        public virtual void Draw(SpriteBatch spriteBatch)
+        {
+        }
 
         public virtual void MouseHover()
         {

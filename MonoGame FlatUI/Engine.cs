@@ -19,6 +19,9 @@ using Microsoft.Xna.Framework.GamerServices;
 
 namespace MonoGame.FlatUI
 {
+    /// <summary>
+    /// MonoGame FlatUI Engine
+    /// </summary>
     public class FlatUIEngine
     {
         #region FIELDS
@@ -104,7 +107,7 @@ namespace MonoGame.FlatUI
         {
             if (control == null)
             {
-                throw new NullReferenceException("Cannot add a null object");
+                throw new NullReferenceException("Cannot add a null control");
             }
             if (this.Controls.Contains(control) == false)
             {
@@ -120,7 +123,7 @@ namespace MonoGame.FlatUI
         {
             if (control == null)
             {
-                throw new NullReferenceException("Cannot delete a null object");
+                throw new NullReferenceException("Cannot delete a null control");
             }
             if (this.Controls.Contains(control) == true)
             {
